@@ -22,5 +22,5 @@ def get_url(url):
         print url+con_title[0]
         for text in con_url:
                  get_url(text)
-get_url(first_url)
+get_url(first_url）
 print "Over at all"
