@@ -17,6 +17,6 @@ def getImg(html):
 		urllib.urlretrieve(imgurl,'%s.jpg' % x)
 		x+=1
 
-html = getHtml("http://tieba.baidu.com/f?ie=utf-8&kw=%E8%84%9A%E6%A8%A1")
+html = getHtml("http://tieba.baidu.com/f?kw=%C2%CC%BE%DE%C8%CB&fr=index")
 
 print getImg(html)
