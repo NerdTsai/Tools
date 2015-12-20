@@ -1,0 +1,36 @@
+#coding=utf-8
+import urllib
+import re
+import os
+
+reg1 ='<a target="_blank" href="(question/\d{8})" class="question-link">'
+reg2 ='data-original="(.*?\.jpg)"'
+base_url = 'https://www.zhihu.com/'
+
+def getHtml(url):
+	page = urllib.urlopen(url)
+	html = page.read()
+	return html
+	
+def getImg(html,page):
+	path = "zhihuimg"
+	title = page
+	new_path = os.path.join(path, title)
+
+	if not os.path.isdir(new_path):
+		os.makedirs(new_path)
+	imgre = re.compile(reg2)
+	imglist = re.findall(imgre,html)
+	x = 0
+	for imgurl in imglist:
+		urllib.urlretrieve(imgurl,'zhihuimg/%s/%s.jpg' %(page,x))
+		x+=1
+
+url = 'https://www.zhihu.com/search?type=question&q=关键字'
+first_page = urllib.urlopen(url)
+first_html = first_page.read()
+urlre = re.compile(reg1)
+urllist = re.findall(urlre,first_html)
+for result_url in urllist:
+	html = getHtml(base_url+result_url)
+	print getImg(html,result_url[9:])
