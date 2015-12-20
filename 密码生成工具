@@ -1,0 +1,14 @@
+#coding=utf-8
+def md5(str):
+	import hashlib
+	m = hashlib.md5()
+	m.update(str)
+	return m.hexdigest()
+
+usrname = raw_input("usr:")
+host = raw_input("host:")
+basepw = raw_input("basepw:")
+pri_pw = md5(usrname+host+basepw)
+com_pw = pri_pw[8:24]
+print "Your PASSWORD:  "+com_pw
+
