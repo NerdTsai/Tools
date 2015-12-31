@@ -10,5 +10,6 @@ host = raw_input("host:")
 basepw = raw_input("basepw:")
 pri_pw = md5(usrname+host+basepw)
 com_pw = pri_pw[8:24]
+com_pw = com_pw.replace('b','&')
+com_pw = com_pw.replace('a','@')
 print "Your PASSWORD:  "+com_pw
-
